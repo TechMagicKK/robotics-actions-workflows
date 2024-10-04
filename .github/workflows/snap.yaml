@@ -71,7 +71,7 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.ubuntu-image }}
     outputs:
       list-of-params: ${{ steps.setVariables.outputs.list-of-params }}
       snap-artifact-name: ${{ inputs.snap-name }}-${{ fromJson(steps.setVariables.outputs.list-of-params)[0] }}
