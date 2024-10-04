@@ -145,7 +145,7 @@ jobs:
           bash -e test-script.sh
   
   release:
-    runs-on: "${{ fromJSON(needs.setup.outputs.list-of-params) }}"
+    runs-on: ubuntu-lastest
     needs: [build]
     steps:
       - name: Release snap files
