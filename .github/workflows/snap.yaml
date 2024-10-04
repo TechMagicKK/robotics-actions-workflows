@@ -143,6 +143,16 @@ jobs:
             ${{ inputs.test-script }}
           EOF
           bash -e test-script.sh
+  
+  release:
+    runs-on: "${{ fromJSON(needs.setup.outputs.list-of-params) }}"
+    needs: [build]
+    steps:
+      - name: Release snap files
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ steps.build-snap.outputs.snap }}
 
   publish:
     if: inputs.publish == true
